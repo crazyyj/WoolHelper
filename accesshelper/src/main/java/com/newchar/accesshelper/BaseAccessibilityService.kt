@@ -11,7 +11,7 @@ import android.view.accessibility.AccessibilityEvent
  *  @since          当前版本描述，
  *  @since          迭代版本描述
  */
-class BaseAccessibilityService : AccessibilityService() {
+open class BaseAccessibilityService : AccessibilityService() {
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
 

@@ -2,6 +2,7 @@ package com.newchar.woolhelper
 
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent
+import com.newchar.accesshelper.BaseAccess
 
 /**
  *  @author         wenliqiang@100tal.com
@@ -23,10 +24,18 @@ class AccessManager(val service: AccessibilityService) {
             return false
         }
         for (access in serverList) {
-            access.isShouldHandleEvent(event).and(access.handleEvent(service, event))
+            if (access.isShouldHandleEvent(event).and(access.handleEvent(service, event))) {
+                return true
+            }
         }
 
         return false
     }
+
+    fun onDestroy() {
+//        for (access in serverList) {
+//        }
+    }
+
 
 }

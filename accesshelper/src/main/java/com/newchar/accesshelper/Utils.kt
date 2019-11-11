@@ -11,10 +11,10 @@ import android.view.accessibility.AccessibilityNodeInfo
  */
 class Utils {
 
-    companion object{
+    companion object {
 
-        fun recycle(nodeInfo: AccessibilityNodeInfo) {
-            nodeInfo.recycle()
+        fun recycle(nodeInfo: AccessibilityNodeInfo?) {
+            nodeInfo?.recycle()
         }
 
     }

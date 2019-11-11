@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService
 import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import com.newchar.accesshelper.BaseAccess
 
 /**
  *  @author         wenliqiang@100tal.com

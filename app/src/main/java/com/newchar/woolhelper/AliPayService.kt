@@ -1,8 +1,7 @@
 package com.newchar.woolhelper
 
-import android.accessibilityservice.AccessibilityService
-import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
+import com.newchar.accesshelper.BaseAccessibilityService
 
 /**
  *  @author         wenliqiang@100tal.com
@@ -11,24 +10,22 @@ import android.view.accessibility.AccessibilityEvent
  *  @since          当前版本描述，
  *  @since          迭代版本描述
  */
-class AliPayService : AccessibilityService() {
-//Timeline，ActivityTrigger，ActivityManager
+class AliPayService : BaseAccessibilityService() {
+    //Timeline，ActivityTrigger，ActivityManager
+    private lateinit var accessManager: AccessManager
+
     override fun onInterrupt() {
-
-
+        accessManager.onDestroy()
+        stopSelf()
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-
-        if (TextUtils.equals("com.eg.android.AlipayGphone", event?.packageName)) {
-
-        }
-
+        accessManager.dispatchEvent(event)
     }
 
     override fun onServiceConnected() {
         super.onServiceConnected()
-
+        accessManager = AccessManager(this)
     }
 
 }
