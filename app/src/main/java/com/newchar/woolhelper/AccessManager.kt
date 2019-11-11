@@ -3,6 +3,7 @@ package com.newchar.woolhelper
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent
 import com.newchar.accesshelper.BaseAccess
+import com.newchar.woolhelper.service.wechat.Temp
 
 /**
  *  @author         wenliqiang@100tal.com
@@ -17,6 +18,7 @@ class AccessManager(val service: AccessibilityService) {
 
     init {
         serverList.add(AliPayAnt())
+        serverList.add(Temp())
     }
 
     fun dispatchEvent(event: AccessibilityEvent?): Boolean {
