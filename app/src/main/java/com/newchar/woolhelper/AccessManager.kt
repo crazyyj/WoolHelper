@@ -3,6 +3,9 @@ package com.newchar.woolhelper
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent
 import com.newchar.accesshelper.BaseAccess
+import com.newchar.woolhelper.service.alipay.AddHomeEnter
+import com.newchar.woolhelper.service.alipay.AliPayAnt
+import com.newchar.woolhelper.service.alipay.AliPayHome
 import com.newchar.woolhelper.service.wechat.Temp
 
 /**
@@ -17,8 +20,9 @@ class AccessManager(val service: AccessibilityService) {
     var serverList = ArrayList<BaseAccess>()
 
     init {
+        serverList.add(AliPayHome())
+        serverList.add(AddHomeEnter())
         serverList.add(AliPayAnt())
-        serverList.add(Temp())
     }
 
     fun dispatchEvent(event: AccessibilityEvent?): Boolean {
@@ -26,7 +30,7 @@ class AccessManager(val service: AccessibilityService) {
             return false
         }
         for (access in serverList) {
-            if (access.isShouldHandleEvent(event).and(access.handleEvent(service, event))) {
+            if (access.isShouldHandleEvent(event) && access.handleEvent(service, event)) {
                 return true
             }
         }
