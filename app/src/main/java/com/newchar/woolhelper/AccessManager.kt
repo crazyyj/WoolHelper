@@ -6,6 +6,7 @@ import com.newchar.accesshelper.BaseAccess
 import com.newchar.woolhelper.service.alipay.AddHomeEnter
 import com.newchar.woolhelper.service.alipay.AliPayAnt
 import com.newchar.woolhelper.service.alipay.AliPayHome
+import com.newchar.woolhelper.service.dingtalk.DingTalkPunch
 import com.newchar.woolhelper.service.wechat.Temp
 
 /**
@@ -23,6 +24,7 @@ class AccessManager(val service: AccessibilityService) {
         serverList.add(AliPayHome())
         serverList.add(AddHomeEnter())
         serverList.add(AliPayAnt())
+        serverList.add(DingTalkPunch())
     }
 
     fun dispatchEvent(event: AccessibilityEvent?): Boolean {

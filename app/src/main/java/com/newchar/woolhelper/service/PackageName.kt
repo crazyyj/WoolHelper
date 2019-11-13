@@ -13,6 +13,8 @@ interface PackageName {
 
         const val ALIPAY_HOME = "com.eg.android.AlipayGphone"
 
+        const val DING_TALK = "com.alibaba.android.rimet"
+
     }
 
 }

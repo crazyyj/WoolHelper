@@ -33,5 +33,6 @@ interface ClassName {
 
 //              支付宝end
 
+        val DING_TALK_PUNCH = "com.alibaba.lightapp.runtime.activity.CommonWebViewActivity"
     }
 }
