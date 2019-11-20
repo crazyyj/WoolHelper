@@ -48,7 +48,7 @@ class AddHomeEnter :BaseAccess{
             val antForest = recyclerView.findAccessibilityNodeInfosByText("蚂蚁森林")
             if (!antForest.isNullOrEmpty()) {
                 val antForestNode = antForest.get(0)
-                var parent = antForestNode.parent
+                val parent = antForestNode.parent
                 if (TextUtils.equals(parent.viewIdResourceName,"com.alipay.android.phone.wallet.homemarket:id/app_info_view")) {
                     println("shi zhge yisi ")
                 }
