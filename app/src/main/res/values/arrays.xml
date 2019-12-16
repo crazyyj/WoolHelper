@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="event_name">
+        <item>按下-click</item>
+        <item>长按-long-click</item>
+        <item>滚动-Scroll</item>
+        <item>输入-Edit</item>
+    </string-array>
+
+</resources>

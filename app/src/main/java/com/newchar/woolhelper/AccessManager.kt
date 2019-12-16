@@ -3,11 +3,14 @@ package com.newchar.woolhelper
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityEvent
 import com.newchar.accesshelper.BaseAccess
+import com.newchar.woolhelper.db.SQLHelper
+import com.newchar.woolhelper.entry.ActionEntry
 import com.newchar.woolhelper.service.alipay.AddHomeEnter
 import com.newchar.woolhelper.service.alipay.AliPayAnt
 import com.newchar.woolhelper.service.alipay.AliPayHome
 import com.newchar.woolhelper.service.dingtalk.DingTalkPunch
 import com.newchar.woolhelper.service.wechat.Temp
+import com.newchar.woolhelper.util.SQLUtils
 
 /**
  *  @author         wenliqiang@100tal.com
@@ -19,8 +22,11 @@ import com.newchar.woolhelper.service.wechat.Temp
 class AccessManager(val service: AccessibilityService) {
 
     var serverList = ArrayList<BaseAccess>()
+    private var allEnableAction: MutableList<ActionEntry>
 
     init {
+        allEnableAction = SQLUtils.getAllEnableAction()
+
         serverList.add(AliPayHome())
         serverList.add(AddHomeEnter())
         serverList.add(AliPayAnt())

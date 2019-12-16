@@ -45,7 +45,21 @@ class ActionEntry() : Parcelable {
      *  操作的事件
      *  点击，长按，滑动等。。。
      */
-    var action: String = ""
+    var action: Int = 0
+
+    /**
+     *  寻找的文本（锚点文本）
+     */
+    var anchorText: String = ""
+
+
+    /**
+     *  寻找的文本
+     *  包名id/jdnfksdnkfj
+     */
+    var viewId: String = ""
+
+
 
     /**
      *  寻找事件的类型
@@ -53,7 +67,7 @@ class ActionEntry() : Parcelable {
      *  2. ViewId
      *  3. 坐标（高级版功能）
      */
-    var actionType: Int = 0
+    var actionType: Int = 0b0
 
     /**
      *  事件状态
@@ -73,9 +87,9 @@ class ActionEntry() : Parcelable {
     constructor(parcel: Parcel) : this() {
         _id = parcel.readInt()
         id = parcel.readString()
+        action = parcel.readInt()
         name = parcel.readString()
         desc = parcel.readString()
-        action = parcel.readString()
         pageName = parcel.readString()
         packageName = parcel.readString()
         enableState = parcel.readInt()
@@ -86,9 +100,9 @@ class ActionEntry() : Parcelable {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(_id)
         parcel.writeString(id)
+        parcel.writeInt(action)
         parcel.writeString(name)
         parcel.writeString(desc)
-        parcel.writeString(action)
         parcel.writeString(pageName)
         parcel.writeString(packageName)
         parcel.writeInt(enableState)
