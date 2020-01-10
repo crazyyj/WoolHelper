@@ -11,6 +11,8 @@ interface PackageName {
 
     companion object {
 
+        const val SHUA_BAO_PACKAGE_NAME: String = "com.jm.video"
+
         const val ALIPAY_HOME = "com.eg.android.AlipayGphone"
 
         const val DING_TALK = "com.alibaba.android.rimet"

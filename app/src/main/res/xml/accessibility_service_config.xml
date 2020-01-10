@@ -2,9 +2,11 @@
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFeedbackType="feedbackAllMask"
-    android:accessibilityFlags="flagRetrieveInteractiveWindows|flagRequestFilterKeyEvents"
+    android:accessibilityFlags="flagRetrieveInteractiveWindows|flagRequestFilterKeyEvents|flagReportViewIds"
     android:canRequestFilterKeyEvents="true"
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
     android:notificationTimeout="100"
-    android:packageNames="com.eg.android.AlipayGphone,com.alipay.mobile,com.alibaba.android.rimet" />
+    android:packageNames="com.jm.video" />
+
+<!--com.eg.android.AlipayGphone,com.alipay.mobile,com.alibaba.android.rimet, -->
