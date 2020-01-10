@@ -1,10 +1,9 @@
 package com.newchar.woolhelper.fragment
 
-import android.media.AudioRouting
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -16,6 +15,9 @@ import androidx.fragment.app.Fragment
 import com.newchar.woolhelper.R
 import com.newchar.woolhelper.RouterNav
 import com.newchar.woolhelper.entry.ActionEntry
+import com.newchar.woolhelper.entry.SelectorItem
+import com.newchar.woolhelper.util.SQLUtils
+import com.newchar.woolhelper.util.TextUtil
 
 /**
  *  @author wenliqiang
@@ -27,6 +29,8 @@ class EditActionFragment : Fragment() {
 
     var id: String? = ""
     val action = ActionEntry()
+    var selectorItem: SelectorItem? = null
+
     lateinit var cbEditActionForceFlag: AppCompatCheckBox
     lateinit var etEditActionClassName: AppCompatEditText
     lateinit var etCreateActionAppPackageName: AppCompatEditText
@@ -86,7 +90,10 @@ class EditActionFragment : Fragment() {
                     RouterNav.goAppListPage(this)
                 }
                 R.id.tvEditActionReadButton -> {
-                    //读取指定包名的最后一个页面
+                    //读取指定包名的最后一个页面， 如果Map中不存在，则读取启动页
+                }
+                R.id.etEditActionActionName -> {        //选择事件， 弹出弹窗
+                    RouterNav.goSelectorItemPage(this)
                 }
             }
         }
@@ -96,7 +103,7 @@ class EditActionFragment : Fragment() {
      * 保存当前页面规则
      */
     private fun saveRule() {
-        if (TextUtils.isEmpty(etCreateActionAppPackageName.text?.trim())) {
+        if (TextUtils.isEmpty(TextUtil.getTextWithTrim(etCreateActionAppPackageName, true))) {
             Toast.makeText(context, "没有包， 抓个毛线", Toast.LENGTH_SHORT).show()
             return
         }
@@ -104,11 +111,26 @@ class EditActionFragment : Fragment() {
             Toast.makeText(context, "没有页面， 抓个毛线", Toast.LENGTH_SHORT).show()
             return
         }
-        if (TextUtils.isEmpty(etEditActionActionForText.text.trim()) && TextUtils.isEmpty(etEditActionActionForId.text.trim())) {
+        if (TextUtils.isEmpty(TextUtil.getTextWithTrim(etEditActionActionForText, true))
+            && TextUtils.isEmpty(TextUtil.getTextWithTrim(etEditActionActionForId, true))) {
             Toast.makeText(context, "Text， Id 至少选择一个", Toast.LENGTH_SHORT).show()
             return
         }
-        action.packageName = etCreateActionAppPackageName.text?.trim().toString()
+        action.packageName = TextUtil.getText(etCreateActionAppPackageName)
+
+        activity?.let { SQLUtils.updateDBAction(it, action) }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            1 -> {      //去了选择事件页面
+                data?.run {
+                     selectorItem = getParcelableExtra("RETURN_DATA") as SelectorItem
+                }
+            }
+        }
+
     }
 
 }
