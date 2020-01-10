@@ -21,7 +21,7 @@ import com.newchar.woolhelper.service.wechat.Temp
 class AccessManager(val service: AccessibilityService) {
 
     var serverList = ArrayList<BaseAccess>()
-    private var allEnableAction: MutableList<ActionEntry>
+//    private var allEnableAction: MutableList<ActionEntry>
 
     init {
 //        serverList.add(AliPayHome())
@@ -29,12 +29,8 @@ class AccessManager(val service: AccessibilityService) {
 //        serverList.add(AliPayAnt())
 //        serverList.add(DingTalkPunch())
         serverList.add(ShuaBaoAccess())
-        allEnableAction = SQLUtils.getAllEnableAction()
+//        allEnableAction = SQLUtils.getAllEnableAction()
 
-        serverList.add(AliPayHome())
-        serverList.add(AddHomeEnter())
-        serverList.add(AliPayAnt())
-        serverList.add(DingTalkPunch())
     }
 
     fun dispatchEvent(event: AccessibilityEvent?): Boolean {
