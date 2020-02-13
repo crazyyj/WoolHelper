@@ -11,7 +11,7 @@ import android.widget.TextView
  */
 class TextUtil {
 
-    companion object{
+    companion object {
 
         /**
          * 从 TextView 中获取文本
@@ -32,7 +32,6 @@ class TextUtil {
         }
 
     }
-
 
 
 }

@@ -6,7 +6,6 @@ import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.collection.SparseArrayCompat
 import androidx.core.widget.NestedScrollView
@@ -30,9 +29,55 @@ class StateLayout {
         stateView = view
     }
 
-    @get:LayoutRes
+
     val layoutId: Int
         get() = R.layout.activity_main
+
+    /**
+     * 不删除，只隐藏
+     */
+    fun hide() {
+
+    }
+
+    /**
+     * 替换指定到View位置，
+     */
+    fun replace(view: View) {
+
+    }
+
+    /**
+     * 替换指定到View位置，
+     */
+    fun replace(id: Int, view: View) {
+
+    }
+
+//    /**
+//     * 替换指定到View位置，
+//     */
+//    fun replace(index: Int, view: View) {
+//
+//    }
+
+    fun add(view: View) {
+
+    }
+
+    /**
+     * 显示一个View，如果没有添加到容器上，先add 后 显示
+     */
+    fun show(view: View) {
+
+    }
+
+    /**
+     * 删除一个View
+     */
+    fun remove(view: View) {
+
+    }
 
     /**
      * 替换内容模式
