@@ -6,9 +6,6 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.collection.SparseArrayCompat;
 
-import com.tongxue.tiku.base.R;
-import com.tongxue.tiku.lib.util.Logger;
-
 /**
  * @author wenliqiang@100tal.com
  * date            2019-12-21
@@ -26,7 +23,7 @@ public class StateLayout {
 
     @LayoutRes
     public int getLayoutId() {
-        return R.layout.common_view_empty;
+        return 0;
     }
 
     public void setEventListener(@IdRes int viewId, View.OnClickListener clickListener) {
@@ -36,7 +33,7 @@ public class StateLayout {
         }
         View eventView = viewContainer.get(viewId);
         if (eventView == null) {
-            Logger.e("StateLayout 不包含此 View 无法设置点击事件");
+//            Logger.e("StateLayout 不包含此 View 无法设置点击事件");
             return;
         }
         eventView.setOnClickListener(clickListener);

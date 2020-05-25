@@ -107,7 +107,7 @@ class EditActionFragment : Fragment() {
             Toast.makeText(context, "没有包， 抓个毛线", Toast.LENGTH_SHORT).show()
             return
         }
-        if (TextUtils.isEmpty(etEditActionClassName.text?.trim())) {
+        if (TextUtils.isEmpty(TextUtil.getTextWithTrim(etEditActionClassName, true))) {
             Toast.makeText(context, "没有页面， 抓个毛线", Toast.LENGTH_SHORT).show()
             return
         }

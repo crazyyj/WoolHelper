@@ -51,7 +51,7 @@ class SQLUtils {
         }
 
 //        fun getAllEnableAction(): MutableList<ActionEntry> {
-////            val helpers = SQLHelper(null, 2)
+//            val helpers = SQLHelper(null, 2)
 //            val readableDatabase = helpers.readableDatabase
 //            val rawQuery = readableDatabase.rawQuery("SELECT * FROM ${SQLHelper.NAME}", arrayOf(""))
 //            var allEnableAction = ArrayList<ActionEntry>()
@@ -59,10 +59,9 @@ class SQLUtils {
 //            for (index in 0..rawQuery.count) {
 //                action.id = rawQuery.getString(rawQuery.getColumnIndex("id"))
 //                action._id = rawQuery.getInt(rawQuery.getColumnIndex("_id"))
-//// TODO 获取全部字段
+//                //TODO 获取全部字段
 //                allEnableAction.add(action)
 //            }
-
 //            return allEnableAction
 //        }
 

@@ -7,6 +7,6 @@
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
     android:notificationTimeout="100"
-    android:packageNames="com.jm.video" />
+    android:packageNames="com.alibaba.android.rimet" />
 
 <!--com.eg.android.AlipayGphone,com.alipay.mobile,com.alibaba.android.rimet, -->

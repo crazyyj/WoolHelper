@@ -22,14 +22,14 @@ import com.newchar.woolhelper.util.SQLUtils
 class AccessManager(val service: AccessibilityService) {
 
     var serverList = ArrayList<BaseAccess>()
-    private var allEnableAction: MutableList<ActionEntry>
+//    private var allEnableAction: MutableList<ActionEntry>
 
     init {
-        allEnableAction = SQLUtils.getAllEnableAction()
+//        allEnableAction = SQLUtils.getAllEnableAction()
 
-        serverList.add(AliPayHome())
-        serverList.add(AddHomeEnter())
-        serverList.add(AliPayAnt())
+//        serverList.add(AliPayHome())
+//        serverList.add(AddHomeEnter())
+//        serverList.add(AliPayAnt())
         serverList.add(DingTalkPunch())
     }
 

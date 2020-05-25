@@ -24,11 +24,8 @@ class TextUtil {
          * 从 TextView 中获取文本， 并去除左右空白
          */
         fun getTextWithTrim(textView: TextView?, trim: Boolean): String {
-            return if (trim) {
-                textView?.text.toString().trim()
-            } else {
-                textView?.text.toString()
-            }
+            return if (trim) textView?.text.toString().trim()
+                else textView?.text.toString()
         }
 
     }
