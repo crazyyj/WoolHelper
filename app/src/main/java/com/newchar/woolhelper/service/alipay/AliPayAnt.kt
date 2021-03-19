@@ -40,9 +40,6 @@ class AliPayAnt : BaseAccess {
             if (!moreFriends.isNullOrEmpty()) {
                 moreFriends.get(0).performAction(AccessibilityNodeInfo.ACTION_CLICK)
             }
-//            child.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
-//            child.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
-//            child.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
             return true
         }
         return false

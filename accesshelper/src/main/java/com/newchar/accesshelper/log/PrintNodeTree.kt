@@ -22,9 +22,6 @@ public class PrintNodeTree {
             builder = StringBuilder()
             iterator(rootNode, 0)
             println("iterator "+ builder.toString());
-//            Log.d("iterator", builder.substring(builder.toString().length / 2).toString())
-//            Log.d("iterator", "--------------")
-//            Log.d("iterator", builder.substring(builder.toString().length / 2, builder.toString().length ).toString())
         }
 
         private fun getNode(node: AccessibilityNodeInfo, index: Int): AccessibilityNodeInfo? {

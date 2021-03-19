@@ -29,7 +29,7 @@ class AccessManager(val service: AccessibilityService) {
 
 //        serverList.add(AliPayHome())
 //        serverList.add(AddHomeEnter())
-//        serverList.add(AliPayAnt())
+        serverList.add(ZhiHuSearchEvent())
         serverList.add(DingTalkPunch())
     }
 

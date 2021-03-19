@@ -31,12 +31,14 @@ class Utils {
          * 是否开启服务
          */
         fun isOpenService(@NotNull context: Context): Boolean {
-            val manager =
-                context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-            var enabledAccessibilityServiceList = manager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
-            var installedAccessibilityServiceList = manager.installedAccessibilityServiceList
+            val manager = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+            val enabledAccessibilityServiceList = manager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC)
+            val installedAccessibilityServiceList = manager.installedAccessibilityServiceList
             return manager.isEnabled
         }
+
+
+
 
 //        private boolean checkStealFeature1(String service) {
 //            int ok = 0;
