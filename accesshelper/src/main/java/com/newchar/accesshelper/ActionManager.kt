@@ -1,7 +1,11 @@
 package com.newchar.accesshelper
 
+import android.accessibilityservice.AccessibilityService
+import android.text.TextUtils
+import android.util.Log
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import org.json.JSONObject
-import java.io.File
 import java.lang.Exception
 
 /**
@@ -11,7 +15,7 @@ import java.lang.Exception
  * @since 迭代版本，（以及描述）
  */
 
-class ActionManager private constructor() {
+class ActionManager {
 
     /**
      * 被管理的全部动作
@@ -36,9 +40,9 @@ class ActionManager private constructor() {
      * 添加一个动作
     //     */
     fun addAction(pkg: String, action: ActionWrapper) {
-        val pkgNameValue = actionMap.get(action.pkgName)
+        val pkgNameValue = actionMap.get(action.pageName)
         if (pkgNameValue == null) {
-            actionMap[action.pkgName] = mutableListOf(action)
+            actionMap[action.pageName] = mutableListOf(action)
         } else {
             pkgNameValue.add(action)
         }
@@ -55,7 +59,7 @@ class ActionManager private constructor() {
             val actionJson = JSONObject(json)
             val pkgName = actionJson.getString("pkgName")
             val actionW = ActionWrapper()
-            actionW.pkgName = pkgName
+            actionW.pageName = pkgName
             val actionJsonArray = actionJson.getJSONArray("actionList")
             val actionList = mutableListOf<Action>()
             for (index in 1 until actionJsonArray.length()) {
@@ -77,6 +81,58 @@ class ActionManager private constructor() {
 
     fun getPackageNameIfEnable(): MutableSet<String> {
         return actionMap.keys
+    }
+
+    fun searchPageMatchForEvent(event: AccessibilityEvent?): Boolean {
+        event?.let {
+            if (getPackageNameIfEnable().contains(event.packageName)) {
+                val actionList = actionMap[event.packageName]
+                for (index in 1 until (actionList?.size ?: 0)) {
+                    val actionWrapper = actionList?.get(index)
+                    return TextUtils.equals(actionWrapper?.pageName, event.className)
+                }
+            }
+        }
+        return false
+    }
+
+    fun execute(service: AccessibilityService, event: AccessibilityEvent) {
+        val actionList = actionMap[event.packageName]
+        for (index in 1 until (actionList?.size ?: 0)) {
+            val actionWrapper = actionList?.get(index)
+            val action = actionWrapper?.actions
+            for (actionIndex in 1 until (action?.size ?: 0)) {
+                val actionGet = action?.get(actionIndex)
+                actionGet?.run {
+                    when (actionGet.actionSignType) {
+                        Action.ActionSign.BY_POINT -> {
+
+                        }
+                        Action.ActionSign.BY_TEXT -> {
+                            val findAccessibilityNodeInfosByText =
+                                service.rootInActiveWindow.findAccessibilityNodeInfosByText(
+                                    actionGet.actionViewText
+                                )
+                            if (actionGet.action == Action.ActionEvent.CLICK) {
+                                findAccessibilityNodeInfosByText[0].performAction(
+                                    AccessibilityNodeInfo.ACTION_CLICK
+                                )
+                            } else if (actionGet.action == Action.ActionEvent.CLICK_LONG) {
+                                findAccessibilityNodeInfosByText[0].performAction(
+                                    AccessibilityNodeInfo.ACTION_LONG_CLICK
+                                )
+                            } else {
+                            }
+                        }
+                        Action.ActionSign.BY_VIEW_ID -> {
+                            service.rootInActiveWindow.findAccessibilityNodeInfosByViewId(actionGet.actionViewId)
+                        }
+                        else -> Log.e("Action", " 现在的actionSignType " + actionGet.actionSignType)
+                    }
+                }
+            }
+
+        }
     }
 
 }

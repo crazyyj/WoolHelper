@@ -12,7 +12,7 @@ import android.view.accessibility.AccessibilityEvent
  *  @since          当前版本描述，
  *  @since          迭代版本描述
  */
-open class BaseAccessibilityService : AccessibilityService() {
+class BaseAccessibilityService : AccessibilityService() {
 
     private lateinit var accessManager: AccessManager
 

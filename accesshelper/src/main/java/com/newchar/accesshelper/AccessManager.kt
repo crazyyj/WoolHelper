@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Process
+import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import java.io.File
 
@@ -84,7 +85,9 @@ class AccessManager(val context: Context) {
 
     fun onAccessibilityEvent(service: AccessibilityService, event: AccessibilityEvent) {
         val actionManager = ActionManager.getInstance()
-        if (actionManager.getPackageNameIfEnable().contains(event.packageName)) {
+        if (actionManager.searchPageMatchForEvent(event)) {
+            actionManager.execute(service, event)
+
 
         }
     }

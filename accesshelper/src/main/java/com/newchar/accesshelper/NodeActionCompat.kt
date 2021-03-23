@@ -1,5 +1,6 @@
 package com.newchar.accesshelper
 
+import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityNodeInfo
 
 /**
@@ -55,4 +56,14 @@ class NodeActionCompat(private val nodeInfo: AccessibilityNodeInfo?) {
         val nodeInfos = nodeInfo?.findAccessibilityNodeInfosByText(text)
         return nodeInfos?.firstOrNull()
     }
+
+    companion object {
+
+        fun performGlobalAction(service: AccessibilityService, globalAction: Int): Boolean {
+            return service.performGlobalAction(globalAction)
+        }
+
+    }
+
+
 }

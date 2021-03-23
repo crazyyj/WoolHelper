@@ -98,4 +98,60 @@ class Action {
 
     }
 
+    object ActionEvent {
+
+        /**
+         * 点击
+         */
+        val CLICK = "1"
+
+        /**
+         * 长按
+         */
+        val CLICK_LONG = "2"
+
+        /**
+         * 横向滑动, 左
+         */
+        val SCOOL_X_UP = "3"
+
+        /**
+         * 横向滑动, 右
+         */
+        val SCOOL_X_DOWN = "4"
+
+        /**
+         * 竖向滑动，上
+         */
+        val SCOOL_Y_UP = "5"
+
+        /**
+         * 竖向滑动，下
+         */
+        val SCOOL_Y = "6"
+
+    }
+
+    /**
+     * 根据什么寻找锚点
+     */
+    object ActionSign {
+
+        /**
+         *  type 是 ViewID 查找
+         */
+        val BY_VIEW_ID: Int = 1
+
+        /**
+         * type 是 文本 查找
+         */
+        val BY_TEXT: Int = 2
+
+        /**
+         * type 是坐标点
+         */
+        val BY_POINT: Int = 3
+
+    }
+
 }

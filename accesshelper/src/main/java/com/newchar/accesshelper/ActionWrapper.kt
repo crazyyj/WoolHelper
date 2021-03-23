@@ -8,7 +8,7 @@ package com.newchar.accesshelper
  */
 class ActionWrapper {
 
-    var pkgName: String = ""
+    var pageName: String = ""
 
     val actions = mutableListOf<Action>()
 
