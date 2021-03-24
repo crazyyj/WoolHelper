@@ -46,7 +46,7 @@ class Action {
     var action: String = ""
 
     /**
-     * 动作的描述
+     * Image的描述，用于配合定位控件，可以为null
      */
     var actionDesc: String = ""
 
@@ -113,22 +113,29 @@ class Action {
         /**
          * 横向滑动, 左
          */
-        val SCOOL_X_UP = "3"
+        val SCROLL_X_UP = "3"
 
         /**
          * 横向滑动, 右
          */
-        val SCOOL_X_DOWN = "4"
+        val SCROLL_X_DOWN = "4"
 
         /**
          * 竖向滑动，上
          */
-        val SCOOL_Y_UP = "5"
+        val SCROLL_Y_UP = "5"
 
         /**
          * 竖向滑动，下
          */
-        val SCOOL_Y = "6"
+        val SCROLL_Y_DOWN = "6"
+
+        /**
+         * 选中
+         */
+        val SELECT = "7"
+
+
 
     }
 

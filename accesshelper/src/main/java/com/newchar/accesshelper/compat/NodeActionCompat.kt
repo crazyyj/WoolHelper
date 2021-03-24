@@ -1,4 +1,4 @@
-package com.newchar.accesshelper
+package com.newchar.accesshelper.compat
 
 import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityNodeInfo

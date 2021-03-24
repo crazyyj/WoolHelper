@@ -6,8 +6,8 @@ import android.content.Context
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Process
-import android.util.Log
 import android.view.accessibility.AccessibilityEvent
+import com.newchar.accesshelper.compat.ServiceInfoCompat
 import java.io.File
 
 /**
@@ -26,7 +26,7 @@ class AccessManager(val context: Context) {
     private var serviceInfoListener: ServiceInfoChangeListener? = null
 
     private val eventCallBack = Handler.Callback {
-        when (INIT_LOAD) {
+        when (it.what) {
             INIT_LOAD -> loadContent()
             INIT_ACCESS_INFO -> parsePkgInfo()
         }
@@ -87,8 +87,6 @@ class AccessManager(val context: Context) {
         val actionManager = ActionManager.getInstance()
         if (actionManager.searchPageMatchForEvent(event)) {
             actionManager.execute(service, event)
-
-
         }
     }
 

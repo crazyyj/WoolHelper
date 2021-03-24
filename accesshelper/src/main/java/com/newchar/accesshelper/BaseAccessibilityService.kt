@@ -3,6 +3,7 @@ package com.newchar.accesshelper
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Intent
+import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 
 /**
@@ -12,12 +13,14 @@ import android.view.accessibility.AccessibilityEvent
  *  @since          当前版本描述，
  *  @since          迭代版本描述
  */
-class BaseAccessibilityService : AccessibilityService() {
+open class BaseAccessibilityService : AccessibilityService() {
 
     private lateinit var accessManager: AccessManager
 
     override fun onServiceConnected() {
         super.onServiceConnected()
+        Log.e("ccessibilityService", "qidongle")
+
         accessManager = AccessManager(this)
         accessManager.init()
         accessManager.setServiceInfoChangeListener(object :

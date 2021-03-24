@@ -1,4 +1,4 @@
-package com.newchar.accesshelper
+package com.newchar.accesshelper.compat
 
 import android.accessibilityservice.AccessibilityServiceInfo
 
@@ -16,10 +16,9 @@ class ServiceInfoCompat {
 
     class Builder(private val serverInfo: AccessibilityServiceInfo) {
 
-//        init {
-//            if (serverInfo == null)
-//                serverInfo = AccessibilityServiceInfo()
-//        }
+        init {
+            serverInfo.packageNames = arrayOfNulls<String>(1)
+        }
 
         fun addPackage(pkg: String): Builder {
             val size = serverInfo.packageNames?.size ?: 0

@@ -24,13 +24,10 @@ class ActionManager {
 
     companion object {
 
-        private lateinit var instance: ActionManager
+        private var instance: ActionManager = ActionManager()
 
         @Synchronized
         fun getInstance(): ActionManager {
-            if (instance == null) {
-                instance = ActionManager()
-            }
             return instance
         }
 
@@ -39,7 +36,7 @@ class ActionManager {
     /**
      * 添加一个动作
     //     */
-    fun addAction(pkg: String, action: ActionWrapper) {
+    fun addAction(action: ActionWrapper) {
         val pkgNameValue = actionMap.get(action.pageName)
         if (pkgNameValue == null) {
             actionMap[action.pageName] = mutableListOf(action)
@@ -47,7 +44,7 @@ class ActionManager {
             pkgNameValue.add(action)
         }
     }
-//
+
 //    fun removeActionFromPkg(pkg: String) {
 //        if (actionMap.containsKey(pkg)) {
 //            actionMap.remove(pkg)
@@ -62,7 +59,7 @@ class ActionManager {
             actionW.pageName = pkgName
             val actionJsonArray = actionJson.getJSONArray("actionList")
             val actionList = mutableListOf<Action>()
-            for (index in 1 until actionJsonArray.length()) {
+            for (index in 0 until actionJsonArray.length()) {
                 val actionObj = actionJsonArray[index] as JSONObject
                 val action = Action.valueOf(actionObj)
                 action?.run {
@@ -72,7 +69,7 @@ class ActionManager {
             actionW.actions.addAll(actionList)
 
             // 把这个action 添加进去
-            addAction(pkgName, actionW)
+            addAction(actionW)
 
         } catch (e: Exception) {
             e.printStackTrace()

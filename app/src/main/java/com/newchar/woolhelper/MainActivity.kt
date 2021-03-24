@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.newchar.accesshelper.AccessManager
 import com.newchar.woolhelper.fragment.EditActionFragment
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         //TODO 搜索本地的配置， 显示成列表
 
+        AccessManager(this).init()
     }
 
 }
