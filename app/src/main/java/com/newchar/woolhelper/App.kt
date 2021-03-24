@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 
 /**
- *  @author         wenliqiang@100tal.com
+ *  @author         wenliqiang@newchar.cn
  *  date            2020-01-08
  *  @version
  *  @since          当前版本描述，
@@ -12,12 +12,4 @@ import android.content.Context
  */
 class App : Application() {
 
-    companion object{
-        var context:Context? = null
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        context = base
-    }
 }

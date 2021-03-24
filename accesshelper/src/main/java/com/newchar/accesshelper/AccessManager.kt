@@ -27,8 +27,10 @@ class AccessManager(val context: Context) {
 
     private val eventCallBack = Handler.Callback {
         when (it.what) {
-            INIT_LOAD -> loadContent()
-            INIT_ACCESS_INFO -> parsePkgInfo()
+            INIT_LOAD -> {
+                loadContent()
+                parsePkgInfo()
+            }
         }
         true
     }
@@ -39,6 +41,9 @@ class AccessManager(val context: Context) {
         val build = ServiceInfoCompat.Builder(AccessibilityServiceInfo())
             .addPackages(allEnablePackageName)
             .capability(1)
+            .eventType()
+            .feedBack()
+            .timeOut()
             .build()
         serviceInfoListener?.onServiceInfoChange(build)
     }
@@ -58,11 +63,10 @@ class AccessManager(val context: Context) {
         //加载本地环境
         mHandler.sendEmptyMessage(INIT_LOAD)
 
-        mHandler.sendEmptyMessage(INIT_ACCESS_INFO)
     }
 
-    fun setServiceInfoChangeListener(info:ServiceInfoChangeListener) {
-        AccessManager@this.serviceInfoListener = info
+    fun setServiceInfoChangeListener(info: ServiceInfoChangeListener) {
+        AccessManager@ this.serviceInfoListener = info
     }
 
     public interface ServiceInfoChangeListener {

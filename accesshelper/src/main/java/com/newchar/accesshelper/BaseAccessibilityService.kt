@@ -22,13 +22,14 @@ open class BaseAccessibilityService : AccessibilityService() {
         Log.e("ccessibilityService", "qidongle")
 
         accessManager = AccessManager(this)
-        accessManager.init()
         accessManager.setServiceInfoChangeListener(object :
             AccessManager.ServiceInfoChangeListener {
             override fun onServiceInfoChange(info: AccessibilityServiceInfo) {
                 serviceInfo = info
             }
         })
+        accessManager.init()
+
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {

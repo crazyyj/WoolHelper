@@ -18,19 +18,11 @@ import com.newchar.woolhelper.service.PackageName
  *  @since          当前版本描述，
  *  @since          迭代版本描述
  */
-class ShuaBaoAccess: BaseAccess {
+class ShuaBaoAccess : BaseAccess {
 
-    val mHandler:Handler = Handler(Handler.Callback {
+    private val mHandler: Handler = Handler(Handler.Callback {
         val obj = it.obj as AccessibilityNodeInfo
         obj.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
-//        Toast.makeText(App.context, "" + obj.getChild(0)?.childCount, Toast.LENGTH_LONG).show()
-//        obj.getChild(0)?.getChild(1)?.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-//        val firstOrNull =
-//            obj.findAccessibilityNodeInfosByViewId("com.jm.video:id/simple_touch_layer")
-//                .firstOrNull()
-//        firstOrNull?.getChild(0)?.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-//        obj.getChild(0)?.getChild(1)?.performAction(AccessibilityNodeInfo.ACTION_FOCUS)
-//        sendMessage(obj)
         return@Callback true
     })
 
@@ -43,19 +35,24 @@ class ShuaBaoAccess: BaseAccess {
     }
 
     override fun isShouldHandleEvent(event: AccessibilityEvent): Boolean {
-        return TextUtils.equals(getPackName(), event.packageName) && TextUtils.equals(getClassName(), event.className)
+        return TextUtils.equals(
+            getPackName(),
+            event.packageName
+        ) && TextUtils.equals(getClassName(), event.className)
     }
 
     override fun getPriority(): Int {
         return 1
     }
 
+    /**
+     * com.jm.video:id/list
+     */
     override fun handleEvent(service: AccessibilityService, event: AccessibilityEvent): Boolean {
         val rootNode = service.rootInActiveWindow ?: return false
         PrintNodeTree.print(rootNode)
 
-        var firstOrNull = rootNode.findAccessibilityNodeInfosByViewId("com.jm.video:id/mmViewPager").firstOrNull()
-//        var firstOrNull = rootNode.findAccessibilityNodeInfosByViewId("com.jm.video:id/list").firstOrNull()
+        val firstOrNull = rootNode.findAccessibilityNodeInfosByViewId("com.jm.video:id/mmViewPager").firstOrNull()
         firstOrNull?.apply {
             sendMessage(firstOrNull)
             return true
@@ -63,7 +60,7 @@ class ShuaBaoAccess: BaseAccess {
         return false
     }
 
-    fun sendMessage(info: AccessibilityNodeInfo): Unit {
-        mHandler.sendMessageDelayed(Message.obtain(mHandler, 1, info), 5000L)
+    private fun sendMessage(info: AccessibilityNodeInfo) {
+        mHandler.sendMessageDelayed(mHandler.obtainMessage(1, info), 5000L)
     }
 }

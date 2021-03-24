@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         //TODO 搜索本地的配置， 显示成列表
 
-        AccessManager(this).init()
+//        AccessManager(this).init()
     }
 
 }

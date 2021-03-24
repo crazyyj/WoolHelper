@@ -1,6 +1,7 @@
 package com.newchar.accesshelper.compat
 
 import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.view.accessibility.AccessibilityNodeInfo
 
 /**
@@ -33,12 +34,12 @@ class NodeActionCompat(private val nodeInfo: AccessibilityNodeInfo?) {
     /**
      * 向上
      */
-    fun scrollUp(nodeInfo: AccessibilityNodeInfo?): Boolean? {
+    fun scrollUp(nodeInfo: AccessibilityNodeInfo?): Boolean {
         return nodeInfo?.run {
             if (isScrollable) {
                 performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
             } else false
-        }
+        } ?: false
     }
 
     /**
@@ -59,8 +60,8 @@ class NodeActionCompat(private val nodeInfo: AccessibilityNodeInfo?) {
 
     companion object {
 
-        fun performGlobalAction(service: AccessibilityService, globalAction: Int): Boolean {
-            return service.performGlobalAction(globalAction)
+        fun performGlobalAction(service: AccessibilityService?, globalAction: Int): Boolean {
+            return service?.performGlobalAction(globalAction) ?: false
         }
 
     }
