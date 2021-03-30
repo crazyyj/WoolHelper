@@ -81,8 +81,8 @@ class AccessManager {
 
 
     public void release() {
-        mHandler.getLooper().quitSafely();
         mHandler.removeCallbacksAndMessages(null);
+        mHandler.getLooper().quitSafely();
 
         serviceInfoListener = null;
     }

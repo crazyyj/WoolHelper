@@ -28,13 +28,11 @@ class ActionManager {
      */
     private final Map<String, List<ActionWrapper>> actionMap = new HashMap<>();
 
-
     private final static ActionManager instance = new ActionManager();
 
     public static ActionManager getInstance() {
         return instance;
     }
-
 
     /**
      * 添加一个动作
@@ -50,11 +48,9 @@ class ActionManager {
         }
     }
 
-//    fun removeActionFromPkg(pkg: String) {
-//        if (actionMap.containsKey(pkg)) {
-//            actionMap.remove(pkg)
-//        }
-//    }
+    public void removeActionFromPkg(String pkg) {
+        actionMap.remove(pkg);
+    }
 
     public void loadActions(String json) {
         try {
@@ -65,9 +61,13 @@ class ActionManager {
             JSONArray actionJsonArray = actionJson.getJSONArray("actionList");
             List<Action> actionList = new ArrayList<>();
             for (int i = 0; i < actionJsonArray.length(); i++) {
-                JSONObject actionObj = (JSONObject) actionJsonArray.get(i);
-                Action action = Action.valueOf(actionObj);
-                actionList.add(action);
+                try {
+                    JSONObject actionObj = (JSONObject) actionJsonArray.get(i);
+                    Action action = Action.valueOf(actionObj);
+                    if (null != action) {
+                        actionList.add(action);
+                    }
+                } catch (Exception ignored) { }
             }
             actionW.actions.addAll(actionList);
 

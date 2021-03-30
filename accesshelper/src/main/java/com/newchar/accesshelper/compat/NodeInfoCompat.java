@@ -2,6 +2,7 @@ package com.newchar.accesshelper.compat;
 
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,11 +26,11 @@ public final class NodeInfoCompat {
     /**
      * 根据 Text 或者 Desc 查找Node对象
      */
-    public static List<AccessibilityNodeInfo> findNodeByText(AccessibilityNodeInfo nodeInfo, String viewID){
+    public static List<AccessibilityNodeInfo> findNodeByText(AccessibilityNodeInfo nodeInfo, String text){
         if (null != nodeInfo) {
-            return nodeInfo.findAccessibilityNodeInfosByText(viewID);
+            return nodeInfo.findAccessibilityNodeInfosByText(text);
         }
-        return null;
+        return Collections.emptyList();
     }
 
 }
