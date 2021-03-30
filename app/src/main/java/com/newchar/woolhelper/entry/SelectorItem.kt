@@ -19,7 +19,7 @@ class SelectorItem() : Parcelable{
     /**
      *  显示的名称
      */
-    var eventName: String = ""
+    var eventName: String? = ""
 
 
     constructor(parcel: Parcel) : this() {

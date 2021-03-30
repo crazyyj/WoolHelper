@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.newchar.accesshelper.AccessManager
 import com.newchar.woolhelper.fragment.EditActionFragment
 
 class MainActivity : AppCompatActivity() {

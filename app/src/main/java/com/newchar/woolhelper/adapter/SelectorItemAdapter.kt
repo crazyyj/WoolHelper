@@ -23,7 +23,7 @@ class SelectorItemAdapter(ctx: Context) : RecyclerView.Adapter<SelectorItemAdapt
 
     init {
         adapterData = ArrayList()
-        layoutInflater = ctx.getSystemService()!!
+        layoutInflater = LayoutInflater.from(ctx)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,7 +48,7 @@ class SelectorItemAdapter(ctx: Context) : RecyclerView.Adapter<SelectorItemAdapt
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
 }

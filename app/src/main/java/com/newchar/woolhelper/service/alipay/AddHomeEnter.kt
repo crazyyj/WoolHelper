@@ -1,12 +1,11 @@
 package com.newchar.woolhelper.service.alipay
 
 import android.accessibilityservice.AccessibilityService
-import android.app.Activity
 import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.newchar.accesshelper.BaseAccess
-import com.newchar.accesshelper.Utils
+import com.newchar.accesshelper.compat.ActionInfoCompat
 import com.newchar.woolhelper.service.ClassName
 import com.newchar.woolhelper.service.IDs
 import com.newchar.woolhelper.service.PackageName
@@ -53,11 +52,11 @@ class AddHomeEnter :BaseAccess{
                     println("shi zhge yisi ")
                 }
                 parent.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                Utils.recycle(antForestNode)
+                ActionInfoCompat.recycle(antForestNode)
                 return true
             }
         }
-        Utils.recycle(rootNode)
+        ActionInfoCompat.recycle(rootNode)
         return false
     }
 

@@ -19,27 +19,27 @@ class ActionEntry() : Parcelable {
     /**
      *  事件id，（事件唯一值， 一定有值）
      */
-    var id: String = ""
+    var id: String? = ""
 
     /**
      *  事件的名称
      */
-    var name: String = ""
+    var name: String? = ""
 
     /**
      *  事件的描述
      */
-    var desc: String = ""
+    var desc: String? = ""
 
     /**
      *  事件触发的页面
      */
-    var pageName: String = ""
+    var pageName: String? = ""
 
     /**
      *  事件触发的包名
      */
-    var packageName: String = ""
+    var packageName: String? = ""
 
     /**
      *  操作的事件

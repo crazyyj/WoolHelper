@@ -15,7 +15,7 @@ import com.newchar.accesshelper.BaseAccess
 class ActionAccess(var entry: ActionEntry) : BaseAccess {
 
 
-    override fun getClassName(): String {
+    override fun getClassName(): String? {
         return entry.pageName
     }
 
@@ -41,7 +41,7 @@ class ActionAccess(var entry: ActionEntry) : BaseAccess {
         return false
     }
 
-    override fun getPackName(): String {
+    override fun getPackName(): String? {
         return entry.packageName
     }
 

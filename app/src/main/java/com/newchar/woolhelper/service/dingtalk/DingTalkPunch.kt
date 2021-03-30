@@ -3,14 +3,10 @@ package com.newchar.woolhelper.service.dingtalk
 import android.accessibilityservice.AccessibilityService
 import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
-import android.view.accessibility.AccessibilityNodeInfo
 import com.newchar.accesshelper.BaseAccess
-import com.newchar.accesshelper.Utils
-import com.newchar.accesshelper.log.PrintNodeTree
 import com.newchar.woolhelper.service.ClassName
 import com.newchar.woolhelper.service.PackageName
-import org.w3c.dom.Node
-import org.w3c.dom.Text
+import com.newchar.accesshelper.log.PrintNodeTree
 
 /**
  *  @author wenliqiang

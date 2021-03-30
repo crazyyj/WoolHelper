@@ -41,7 +41,7 @@ class EditActionFragment : Fragment() {
         fun actionLaunch(id: String): EditActionFragment {
             val fragment = EditActionFragment()
             if (!TextUtils.isEmpty(id)) {
-                val bundle: Bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putString("ID", id)
                 fragment.arguments = bundle
             }
@@ -126,7 +126,7 @@ class EditActionFragment : Fragment() {
         when (requestCode) {
             1 -> {      //去了选择事件页面
                 data?.run {
-                     selectorItem = getParcelableExtra("RETURN_DATA") as SelectorItem
+                     selectorItem = getParcelableExtra("RETURN_DATA") as SelectorItem?
                 }
             }
         }
