@@ -14,23 +14,34 @@ public class ActionInfoCompat {
 
 
     /**
-     * 回收NodeInfo
-     *
-     * @param nodeInfo 被操作的Node
-     */
-    public static void recycle(AccessibilityNodeInfo nodeInfo) {
-        if (nodeInfo != null) {
-            nodeInfo.recycle();
-        }
-    }
-
-    /**
      * 向后滚动
      */
     public static boolean scrollDown(AccessibilityNodeInfo nodeInfo) {
         boolean result = false;
         if (null != nodeInfo && nodeInfo.isScrollable()) {
             result = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD);
+        }
+        return result;
+    }
+
+    /**
+     * 长按事件
+     */
+    public static boolean performLongClick(AccessibilityNodeInfo nodeInfo) {
+        boolean result = false;
+        if (null != nodeInfo && nodeInfo.isClickable()) {
+            result = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_LONG_CLICK);
+        }
+        return result;
+    }
+
+    /**
+     * 点击事件
+     */
+    public static boolean performClick(AccessibilityNodeInfo nodeInfo) {
+        boolean result = false;
+        if (null != nodeInfo && nodeInfo.isClickable()) {
+            result = nodeInfo.performAction(AccessibilityNodeInfo.ACTION_CLICK);
         }
         return result;
     }
@@ -50,6 +61,12 @@ public class ActionInfoCompat {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_BACK);
     }
 
+    /**
+     * 按下Home键
+     *
+     * @param service 服务
+     * @return 是否成功
+     */
     public static boolean performHome(AccessibilityService service) {
         return performGlobalAction(service, AccessibilityService.GLOBAL_ACTION_HOME);
     }

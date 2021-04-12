@@ -6,6 +6,7 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import com.newchar.accesshelper.BaseAccess
 import com.newchar.accesshelper.compat.ActionInfoCompat
+import com.newchar.accesshelper.compat.NodeInfoCompat
 import com.newchar.woolhelper.service.ClassName
 import com.newchar.woolhelper.service.IDs
 import com.newchar.woolhelper.service.PackageName
@@ -52,11 +53,11 @@ class AddHomeEnter :BaseAccess{
                     println("shi zhge yisi ")
                 }
                 parent.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                ActionInfoCompat.recycle(antForestNode)
+                NodeInfoCompat.recycle(antForestNode)
                 return true
             }
         }
-        ActionInfoCompat.recycle(rootNode)
+        NodeInfoCompat.recycle(rootNode)
         return false
     }
 

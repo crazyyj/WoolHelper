@@ -44,7 +44,7 @@ public class BaseAccessibilityService extends AccessibilityService {
     public void onInterrupt() {
         if (accessManager != null) {
             accessManager.release();
-
+            accessManager = null;
         }
 
     }

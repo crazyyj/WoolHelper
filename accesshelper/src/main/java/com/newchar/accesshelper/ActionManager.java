@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.newchar.accesshelper.compat.ActionInfoCompat;
+import com.newchar.accesshelper.compat.NodeInfoCompat;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -67,14 +70,15 @@ class ActionManager {
                     if (null != action) {
                         actionList.add(action);
                     }
-                } catch (Exception ignored) { }
+                } catch (Exception ignored) {
+                }
             }
             actionW.actions.addAll(actionList);
 
             // 把这个action 添加进去
             addAction(actionW);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -104,7 +108,7 @@ class ActionManager {
 
     @SuppressWarnings("SuspiciousMethodCalls")
     public void execute(AccessibilityService service, AccessibilityEvent event) {
-        if (event == null) {
+        if (service == null || event == null) {
             return;
         }
 
@@ -112,6 +116,8 @@ class ActionManager {
         if (actionWrappers == null) {
             return;
         }
+
+        AccessibilityNodeInfo rootNodeInfo = service.getRootInActiveWindow();
         for (ActionWrapper actionWrapper : actionWrappers) {
             List<Action> actions = actionWrapper.actions;
             for (Action action : actions) {
@@ -120,20 +126,32 @@ class ActionManager {
 
                         break;
                     case Action.ActionSign.BY_TEXT:
-                        List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText =
-                                service.getRootInActiveWindow().findAccessibilityNodeInfosByText(action.actionViewText);
+                        List<AccessibilityNodeInfo> nodeInfoList = NodeInfoCompat.findNodeByText(rootNodeInfo, action.actionViewText);
+                        AccessibilityNodeInfo node = nodeInfoList.get(0);
                         if (TextUtils.equals(action.action, Action.ActionEvent.CLICK)) {
-                            findAccessibilityNodeInfosByText.get(0).performAction(
-                                    AccessibilityNodeInfo.ACTION_CLICK
-                            );
+                            ActionInfoCompat.performClick(node);
                         } else if (TextUtils.equals(Action.ActionEvent.CLICK_LONG, action.action)) {
-                            findAccessibilityNodeInfosByText.get(0).performAction(
-                                    AccessibilityNodeInfo.ACTION_LONG_CLICK
-                            );
+                            ActionInfoCompat.performLongClick(node);
                         }
                         break;
                     case Action.ActionSign.BY_VIEW_ID:
-                        service.getRootInActiveWindow().findAccessibilityNodeInfosByViewId(action.actionViewId);
+                        if (!TextUtils.isEmpty(action.actionViewId)) {
+                            List<AccessibilityNodeInfo> nodeInfoByViewId = NodeInfoCompat.findNodeByViewId(rootNodeInfo, action.actionViewId);
+                            if (nodeInfoByViewId != null && !nodeInfoByViewId.isEmpty()) {
+                                AccessibilityNodeInfo nodeById = nodeInfoByViewId.get(0);
+                                if (nodeById != null) {
+                                    if (TextUtils.equals(action.action, Action.ActionEvent.CLICK)) {
+                                        ActionInfoCompat.performClick(nodeById);
+                                    } else if (TextUtils.equals(action.action, Action.ActionEvent.CLICK_LONG)) {
+                                        ActionInfoCompat.performLongClick(nodeById);
+                                    } else if (TextUtils.equals(action.action, Action.ActionEvent.SCROLL_X_DOWN)) {
+                                        ActionInfoCompat.scrollDown(nodeById);
+                                    } else if (TextUtils.equals(action.action, Action.ActionEvent.SCROLL_Y_DOWN)) {
+                                        ActionInfoCompat.scrollUp(nodeById);
+                                    }
+                                }
+                            }
+                        }
                         break;
                     default:
                         Log.e("Action", " 现在的actionSignType " + action.actionSignType);

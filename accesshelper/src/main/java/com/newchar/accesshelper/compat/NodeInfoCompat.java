@@ -33,4 +33,15 @@ public final class NodeInfoCompat {
         return Collections.emptyList();
     }
 
+    /**
+     * 回收NodeInfo
+     *
+     * @param nodeInfo 被操作的Node
+     */
+    public static void recycle(AccessibilityNodeInfo nodeInfo) {
+        if (nodeInfo != null) {
+            nodeInfo.recycle();
+        }
+    }
+
 }
