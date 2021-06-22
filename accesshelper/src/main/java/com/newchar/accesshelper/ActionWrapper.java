@@ -12,8 +12,53 @@ import java.util.List;
 
 public final class ActionWrapper {
 
-    String pageName = "";
+    /**
+     * 在哪个页面进行处理
+     */
+    private String pageName = "";
 
-    List<Action> actions = new ArrayList<>();
+    /**
+     * 应用包名
+     */
+    private String pkgName = "";
+
+    /**
+     * 组数据可用性
+     */
+    private boolean available = true;
+
+    private List<Action> actions = new ArrayList<>();
+
+    public String getPageName() {
+        return pageName;
+    }
+
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
+    }
+
+    public String getPkgName() {
+        return pkgName;
+    }
+
+    public void setPkgName(String pkgName) {
+        this.pkgName = pkgName;
+    }
+
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public boolean updateAvailable(boolean able) {
+        return available = able;
+    }
 
 }

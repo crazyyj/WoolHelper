@@ -26,13 +26,13 @@ public final class Action {
     /**
      * 当 @see actionSignType == 2 时，使用该变量定位要操作当View
      */
-    String actionViewText  = "";
+    String actionViewText = "";
 
     /**
      * 当 @see actionSignType == 3 时，使用该变量定位要操作当View
      * , 分割两个坐标点
      */
-    String actionLocal  = "";   // 坐标点
+    String actionLocal = "";   // 坐标点
 
     /**
      * 动作点唯一标示
@@ -45,9 +45,9 @@ public final class Action {
     String action = "";
 
     /**
-     * Image的描述，用于配合定位控件，可以为null
+     * Image的描述，用于配合定位控件，可以为null，再多遇见多匹配的时候，用于组合匹配找到唯一的控件
      */
-    String actionDesc  = "";
+    String actionDesc = "";
 
     /**
      * 动作所要操作的Node节点全类名，一般为View的类名
@@ -70,12 +70,19 @@ public final class Action {
      */
     String actionPage = "";
 
+    /**
+     * 当前动作的状态；
+     * 可用，
+     * 当前事件流不可用
+     * 不可用
+     */
+    int state;
 
     public static Action valueOf(JSONObject jsonObject) {
-        Action action ;
+        Action action;
         try {
             action = new Action();
-            action.action = jsonObject.getString("action");
+            action.action = jsonObject.optString("action");
             action.actionId = jsonObject.getString("actionId");
             action.actionTimes = jsonObject.getInt("actionTimes");
             action.actionDesc = jsonObject.optString("actionDesc");
@@ -85,8 +92,8 @@ public final class Action {
             action.actionViewId = jsonObject.getString("actionViewId");
             action.actionSignType = jsonObject.getInt("actionSignType");
             action.actionViewText = jsonObject.getString("actionViewText");
-            action.actionFollowUp = jsonObject.getString("actionFollowUp");
-        } catch (Exception e ) {
+            action.actionFollowUp = jsonObject.optString("actionFollowUp", "");
+        } catch (Exception e) {
             action = null;
             e.printStackTrace();
         }
@@ -151,6 +158,33 @@ public final class Action {
          * type 是坐标点
          */
         int BY_POINT = 3;
+
+    }
+
+    /**
+     * Action的可用状态
+     */
+    interface State {
+
+        /**
+         * 绝对不可用
+         */
+        int UNABLE = -3;
+
+        /**
+         * UI 界面勾选不可用
+         */
+        int FORCE_UNABLE = -2;
+
+        /**
+         * 当前事件流不可用
+         */
+        int UNABLE_CURRENT_FLOW = -1;
+
+        /**
+         * 默认事件可用
+         */
+        int ABLE = 0;
 
     }
 

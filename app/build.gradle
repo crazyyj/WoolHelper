@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion 30
@@ -7,25 +6,44 @@ android {
 
     defaultConfig {
         applicationId "com.newchar.woolhelper"
-        minSdkVersion 19
+        minSdkVersion 22     //5,1
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        resConfigs "zh", "zh-rCN"
     }
+
+    signingConfigs {
+        release {
+            // 加载properties 资源
+            Properties properties = new Properties()
+            InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream();
+            properties.load(inputStream)
+
+            keyAlias properties.getProperty('keyAlias')                 // 加密文件的别名
+            keyPassword properties.getProperty('keyPassword')           // 别名密码
+            storeFile file(properties.getProperty('storeFile'))         // 读取文件
+            storePassword properties.getProperty('storePassword')       // 加密文件的密码
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
-        debug {
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+//        debug {
+//            minifyEnabled false
+//            zipAlignEnabled false
+//            shrinkResources false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,12 +52,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.core:core-ktx:1.3.2"
-    implementation "androidx.appcompat:appcompat:$androidx_version"
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(path: ':accesshelper')
-
 
 }
