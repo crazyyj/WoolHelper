@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 
 android {
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -19,6 +19,15 @@ android {
             minifyEnabled true
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue "string", "desc", "这里是描述release"
+            resValue "string", "edittext_default_hint", "请选择填写的项目"
+        }
+
+        debug {
+            resValue "string", "desc", "这里是描述debug"
+            resValue "string", "edittext_default_hint", "请选择填写的项目"
+
         }
     }
 }

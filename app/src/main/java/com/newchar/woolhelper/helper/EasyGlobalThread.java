@@ -12,7 +12,7 @@ import android.os.Process;
  */
 public class EasyGlobalThread extends HandlerThread {
 
-    public EasyGlobalThread() {
+    private EasyGlobalThread() {
         super("EasyGlobalThread #", Process.THREAD_PRIORITY_BACKGROUND);
         start();
     }

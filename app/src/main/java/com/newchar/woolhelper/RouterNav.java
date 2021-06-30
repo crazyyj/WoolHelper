@@ -3,7 +3,7 @@ package com.newchar.woolhelper;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.newchar.woolhelper.ui.MainActivity;
+import com.newchar.woolhelper.main.MainActivity;
 
 /**
  * @author newChar

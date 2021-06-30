@@ -106,8 +106,7 @@ public final class Utils {
     }
 
     public static ActivityInfo[] findActivitiesForPackage(
-            Context context,
-            String packageName) {
+            Context context, String packageName) {
         try {
             final PackageManager pm = context.getPackageManager();
             PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);

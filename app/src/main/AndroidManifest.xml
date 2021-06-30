@@ -16,7 +16,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".main.MainActivity"
             android:configChanges="orientation|keyboard"
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor">
@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".addcmd.AddCmdActivity" />
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.newchar.woolhelper;
+package com.newchar.woolhelper.util;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -12,7 +12,7 @@ import java.util.List;
  * @since 获取手机上App的信息
  * @since 迭代版本，（以及描述）
  */
-public class PhoneAppInfo {
+public class PhoneUtils {
 
 
     /**

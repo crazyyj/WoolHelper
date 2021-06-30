@@ -13,10 +13,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_SQL_TABLE =
-            "CREATE TABLE $NAME (_id varchar(30), id integer(10) )";
+            "CREATE TABLE NAME (_id varchar(30), id integer(10) )";
 
     public SQLHelper(Context context) {
-        super(context, "DBNAME", null, 1);
+        super(context, "cmd", null, 1);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SQLHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_SQL_TABLE);
             db.setTransactionSuccessful();
         } finally {
-            db.close();
+            db.endTransaction();
         }
     }
 
@@ -34,4 +34,5 @@ public class SQLHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }
