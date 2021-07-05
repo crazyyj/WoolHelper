@@ -9,4 +9,14 @@ import android.app.Application;
  * @since 迭代版本，（以及描述）
  */
 public class App extends Application {
+
+    public static Application mApplication;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mApplication = this;
+
+    }
+
 }

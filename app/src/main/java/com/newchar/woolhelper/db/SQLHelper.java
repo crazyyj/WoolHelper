@@ -3,6 +3,9 @@ package com.newchar.woolhelper.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.newchar.woolhelper.entry.HasOrderAppItem;
 
 /**
  * @author newChar
@@ -12,21 +15,25 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class SQLHelper extends SQLiteOpenHelper {
 
-    public static final String CREATE_SQL_TABLE =
-            "CREATE TABLE NAME (_id varchar(30), id integer(10) )";
+    /**
+     * 初始化版本
+     */
+    private static final int VERSION_INIT = 1;
 
     public SQLHelper(Context context) {
-        super(context, "cmd", null, 1);
+        super(context, "cmd", null, VERSION_INIT);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
             db.beginTransaction();
-            db.execSQL(CREATE_SQL_TABLE);
+            db.execSQL(HasOrderAppItem.TABLE.createTableSql());
             db.setTransactionSuccessful();
+            Log.d("SQLHelper", " cmd 开始创建");
         } finally {
             db.endTransaction();
+            Log.d("SQLHelper", "cmd 创建完成");
         }
     }
 

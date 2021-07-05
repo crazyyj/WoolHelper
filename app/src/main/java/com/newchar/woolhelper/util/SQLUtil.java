@@ -50,7 +50,7 @@ public final class SQLUtil {
 //            }
 //            rawQuery.close();
             database.setTransactionSuccessful();
-            database.close();
+//            database.close();
         }
     }
 

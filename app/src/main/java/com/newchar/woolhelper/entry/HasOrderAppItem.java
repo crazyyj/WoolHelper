@@ -1,5 +1,7 @@
 package com.newchar.woolhelper.entry;
 
+import android.provider.BaseColumns;
+
 /**
  * @author newChar
  * date 2021/6/23
@@ -8,21 +10,15 @@ package com.newchar.woolhelper.entry;
  */
 public class HasOrderAppItem {
 
+    private String appPackage;
+
+    private int orderNumber;
+
+    private String describe;
+
     /**
      * 包名，根据包名取图标，以及App名称
      */
-    private String appPackage;
-
-    /**
-     * 有几条命令
-     */
-    private int orderNumber;
-
-    /**
-     * 手动描述
-     */
-    private String describe;
-
     public String getAppPackage() {
         return appPackage;
     }
@@ -31,6 +27,9 @@ public class HasOrderAppItem {
         this.appPackage = appPackage;
     }
 
+    /**
+     * 有几条命令
+     */
     public int getOrderNumber() {
         return orderNumber;
     }
@@ -39,6 +38,9 @@ public class HasOrderAppItem {
         this.orderNumber = orderNumber;
     }
 
+    /**
+     * 手动描述
+     */
     public String getDescribe() {
         return describe;
     }
@@ -47,21 +49,37 @@ public class HasOrderAppItem {
         this.describe = describe;
     }
 
-    public class TABLE {
+    public static final class TABLE {
 
         public static final String NAME = "has_order_app_item";
 
+        public static String createTableSql() {
+            return "CREATE TABLE " + NAME
+                    + " ( " + HasOrderAppItem.COLUMNS._ID + " integer(4)"
+                    + ", " + HasOrderAppItem.COLUMNS.COLUMNS_APP_ICON + " integer"
+                    + ", " + HasOrderAppItem.COLUMNS.COLUMNS_APP_PACKAGE_NAME + " varchar"
+                    + ", " + HasOrderAppItem.COLUMNS.COLUMNS_ORDER_NUMBER + " varchar"
+                    + ", " + HasOrderAppItem.COLUMNS.COLUMNS_DESCRIBE + " varchar "
+                    + " )";
+        }
+
     }
 
-    public class COLUMNS {
+    public static class COLUMNS implements BaseColumns {
 
         public static final String COLUMNS_APP_PACKAGE_NAME = "app_package";
 
         public static final String COLUMNS_ORDER_NUMBER = "order_number";
 
-        public static final String COLUMNS_DESCRIBE = "describe";
-    }
+        public static final String COLUMNS_APP_ICON = "app_icon";
 
+        public static final String COLUMNS_DESCRIBE = "describe";
+
+        public static String[] getAllColumns() {
+            return new String[]{COLUMNS_APP_ICON, COLUMNS_APP_PACKAGE_NAME, COLUMNS_ORDER_NUMBER, COLUMNS_DESCRIBE};
+        }
+
+    }
 
 
 }
