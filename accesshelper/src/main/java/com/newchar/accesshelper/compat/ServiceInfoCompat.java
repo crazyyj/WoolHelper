@@ -1,12 +1,9 @@
 package com.newchar.accesshelper.compat;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.annotation.TargetApi;
 import android.os.Build;
-import android.text.TextUtils;
 import android.view.accessibility.AccessibilityEvent;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 
 /**
  * @author newChar
@@ -59,8 +56,11 @@ public class ServiceInfoCompat {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void setDefaultEventType() {
-        mServerInfo.eventTypes = AccessibilityEvent.TYPE_WINDOWS_CHANGED | AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED | AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
+        mServerInfo.eventTypes = AccessibilityEvent.TYPE_WINDOWS_CHANGED
+                | AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+                | AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
     }
 
     public void addEventType(int... eventType) {
@@ -103,8 +103,8 @@ public class ServiceInfoCompat {
     /**
      * 超时时间
      */
-    public void setTimeOut() {
-        setTimeOut(10L);
+    public void setDefaultTimeOut() {
+        setTimeOut(100L);
     }
 
     /**
@@ -133,18 +133,18 @@ public class ServiceInfoCompat {
         }
     }
 
-    /**
-     * 设置Flag
-     *
-     * @param flags Flag
-     */
-    public void addFlags(int... flags) {
-        if (flags != null && flags.length > 0) {
-            for (int flag : flags) {
-                mServerInfo.flags |= flag;
-            }
-        }
-    }
+//    /**
+//     * 设置Flag
+//     *
+//     * @param flags Flag
+//     */
+//    public void addFlags(int... flags) {
+//        if (flags != null && flags.length > 0) {
+//            for (int flag : flags) {
+//                mServerInfo.flags |= flag;
+//            }
+//        }
+//    }
 
     /*
      * 设置他在 辅助服务设置界面的描述， 无效

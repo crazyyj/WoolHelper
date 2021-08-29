@@ -1,16 +1,16 @@
-package com.newchar.woolhelper.db;
+package com.newchar.accesshelper.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.newchar.woolhelper.entry.HasOrderAppItem;
+import com.newchar.accesshelper.entry.HasOrderAppItem;
 
 /**
  * @author newChar
  * date 2021/6/18
- * @since 当前版本，（以及描述）
+ * @since 数据库存储
  * @since 迭代版本，（以及描述）
  */
 public class SQLHelper extends SQLiteOpenHelper {

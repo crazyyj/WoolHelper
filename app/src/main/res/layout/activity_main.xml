@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
+    <include layout="@layout/common_title_bar" />
+
     <ListView
         android:id="@+id/lvMainActionList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?android:actionBarSize"
         android:scrollbars="none" />
 
     <ImageButton
@@ -16,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:gravity="center"
         android:layout_margin="20dp"
+        android:gravity="center"
         android:src="@drawable/common_ic_arrow_right" />
 
 </FrameLayout>

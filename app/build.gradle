@@ -35,13 +35,16 @@ android {
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+
+            resValue "string", "app_name", "自动魔豆"
+            resValue "string", "common_title_left_image_desc", "通用Title的返回键"
         }
-//        debug {
-//            minifyEnabled false
-//            zipAlignEnabled false
-//            shrinkResources false
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//        }
+
+        debug {
+
+            resValue "string", "app_name", "自动魔豆"
+            resValue "string", "common_title_left_image_desc", "debug通用Title的返回键"
+        }
     }
 
     compileOptions {
@@ -51,6 +54,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':accesshelper')
+    api project(path: ':accesshelper')
 
 }

@@ -1,7 +1,5 @@
 package com.newchar.accesshelper;
 
-import android.util.Range;
-
 import com.newchar.accesshelper.log.LLL;
 
 import java.util.ArrayList;
@@ -89,7 +87,7 @@ class ActionGroup {
     public Action getAction() {
         int actionSize = groupActions.size();
         if (index < 0 || index >= actionSize) {
-            LLL.E("ActionError", "getAction index = " + index + " actionSize = " + actionSize);
+            LLL.w("ActionError", "getAction index = " + index + " actionSize = " + actionSize);
             return null;
         }
         return groupActions.get(index);
@@ -104,7 +102,7 @@ class ActionGroup {
     public Action getAction(String actionId) {
         int actionSize = groupActions.size();
         if (index < 0 || index >= actionSize) {
-            LLL.E("ActionError", "getAction index = " + index + " actionSize = " + actionSize);
+            LLL.w("ActionError", "getAction index = " + index + " actionSize = " + actionSize);
             return null;
         }
         return groupActions.get(index);

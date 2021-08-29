@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?android:actionBarSize">
+
+    <ImageButton
+        android:id="@+id/ivCommonTitleLeftImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/common_title_left_image_desc"
+        android:src="@drawable/common_ic_arrow_right" />
+
+    <TextView
+        android:id="@+id/tvCommonTitleCenterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="16sp"
+        tools:text="Title" />
+
+    <ImageButton
+        android:id="@+id/ivCommonTitleRightMore"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:contentDescription="@string/common_title_left_image_desc"
+        android:src="@drawable/shuxiang" />
+
+</RelativeLayout>

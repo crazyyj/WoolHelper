@@ -17,8 +17,8 @@ class FileManager {
      *
      * @return 获取配置文件根目录
      */
-    public static File getScriptRootDir(Context context) {
-        return context.getExternalFilesDir("script");
+    public static File getScriptRootDir() {
+        return Utils.getContext().getExternalFilesDir("script");
     }
 
 

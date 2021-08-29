@@ -1,29 +1,19 @@
 package com.newchar.accesshelper;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author newChar
@@ -48,10 +38,10 @@ public final class Utils {
         return manager.isEnabled();
     }
 
-    public static void stat(Context appContext) {
+    public static void stat() {
         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        appContext.startActivity(intent);
+        getContext().startActivity(intent);
     }
 
     /**

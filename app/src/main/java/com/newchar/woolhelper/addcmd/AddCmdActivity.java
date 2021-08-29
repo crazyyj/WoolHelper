@@ -3,15 +3,10 @@ package com.newchar.woolhelper.addcmd;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.newchar.woolhelper.R;
-import com.newchar.woolhelper.base.BaseActivity;
 
 /**
  * @author newChar
@@ -19,7 +14,7 @@ import com.newchar.woolhelper.base.BaseActivity;
  * @since 当前版本，（以及描述）
  * @since 迭代版本，（以及描述）
  */
-public class AddCmdActivity extends BaseActivity {
+public class AddCmdActivity extends Activity {
 
     private ListView mLvDevicesAppList;
     private ImageView mIvAddCmdPackageName;
@@ -59,7 +54,6 @@ public class AddCmdActivity extends BaseActivity {
 //        });
 //    }
 
-    @Override
     protected int getContentView() {
         return R.layout.activity_add_cmd;
     }

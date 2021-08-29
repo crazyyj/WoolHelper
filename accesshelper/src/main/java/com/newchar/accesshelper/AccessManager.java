@@ -5,13 +5,11 @@ import android.accessibilityservice.AccessibilityServiceInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
-import android.os.Process;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.newchar.accesshelper.compat.ServiceInfoCompat;
+import com.newchar.accesshelper.log.LLL;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -37,12 +35,7 @@ class AccessManager {
             switch (msg.what) {
                 case INIT_LOAD: {
                     loadContent();
-//                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-//                        @Override
-//                        public void run() {
-                            parsePkgInfo();
-//                        }
-//                    });
+                    parsePkgInfo();
                 }
                 break;
                 case INIT_ACCESS_INFO:
@@ -56,8 +49,7 @@ class AccessManager {
     public AccessManager(AccessibilityService service) {
         mServiceRef = new WeakReference<>(service);
         HandlerThread tempThread = new HandlerThread(
-                "AccessManager InitThread",
-                Process.THREAD_PRIORITY_BACKGROUND
+                "AccessManager InitThread"
         );
         tempThread.start();
         mHandler = new Handler(tempThread.getLooper(), eventCallBack);
@@ -83,7 +75,7 @@ class AccessManager {
         }
         serviceInfoCompat.setDefaultEventType();
         serviceInfoCompat.setDefaultFeedBack();
-        serviceInfoCompat.setTimeOut();
+        serviceInfoCompat.setDefaultTimeOut();
         serviceInfoCompat.addFlags(AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS);
         serviceInfoCompat.addFlags(AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -106,22 +98,26 @@ class AccessManager {
     private void loadContent() {
         AccessibilityService accessibilityService = mServiceRef.get();
         if (accessibilityService == null) {
-            Log.e("Server", "AccessibilityService is null。");
+            LLL.e("newAuto", "loadContent AccessibilityService is null。");
             return;
         }
+
         File ruleFile = new File(accessibilityService.getCacheDir(), "access.json");
         String ruleFileJson = Utils.safeReadFileToText(ruleFile);
         ActionManager actionManager = ActionManager.getInstance();
         actionManager.loadActions(ruleFileJson);
     }
 
-    public void onAccessibilityEvent(AccessibilityService service, AccessibilityEvent event) {
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+        AccessibilityService accessibilityService = mServiceRef.get();
+        if (accessibilityService == null) {
+            return;
+        }
         ActionManager actionManager = ActionManager.getInstance();
         if (actionManager.searchActionMatchForEvent(event)) {
-            actionManager.execute(service, event);
+            actionManager.execute(accessibilityService, event);
         }
     }
-
 
     public void release() {
         mHandler.removeCallbacksAndMessages(null);

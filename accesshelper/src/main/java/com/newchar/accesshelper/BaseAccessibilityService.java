@@ -2,14 +2,9 @@ package com.newchar.accesshelper;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.os.Build;
-import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.newchar.accesshelper.compat.ActionInfoCompat;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.newchar.accesshelper.log.LLL;
 
 /**
  * @author newChar
@@ -24,25 +19,24 @@ public class BaseAccessibilityService extends AccessibilityService {
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
-        Logger.getLogger("onAccessibility").log(Level.WARNING, "onServiceConnected");
+        LLL.w("onAccessibility", "onServiceConnected");
         accessManager = new AccessManager(this);
         accessManager.setServiceInfoChangeListener(new AccessManager.ServiceInfoChangeListener() {
             @Override
             public void onServiceInfoChange(AccessibilityServiceInfo info) {
                 setServiceInfo(info);
-                Log.e("onAccessibility", "onServiceInfoChange " + info.toString());
+                LLL.w("onAccessibility", "onServiceInfoChange " + info.toString());
             }
         });
         accessManager.init();
-
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        Log.e("onAccessibility", "onAccessibilityEvent");
+        LLL.w("onAccessibility", "onAccessibilityEvent");
         if (event != null) {
 //            把Event传进去，根据包名，类名过滤然后执行后边的具体判断逻辑。要执行哪些操作
-            accessManager.onAccessibilityEvent(this, event);
+            accessManager.onAccessibilityEvent(event);
         }
     }
 

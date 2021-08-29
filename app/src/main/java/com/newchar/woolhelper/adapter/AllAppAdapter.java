@@ -2,12 +2,11 @@ package com.newchar.woolhelper.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 
+import com.newchar.accesshelper.entry.HasOrderAppItem;
 import com.newchar.woolhelper.R;
-import com.newchar.woolhelper.entry.HasOrderAppItem;
 
 /**
  * @author newChar

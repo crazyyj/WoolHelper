@@ -1,4 +1,4 @@
-package com.newchar.woolhelper.entry;
+package com.newchar.accesshelper.entry;
 
 import android.provider.BaseColumns;
 

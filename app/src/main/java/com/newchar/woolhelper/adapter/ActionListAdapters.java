@@ -9,10 +9,11 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.newchar.woolhelper.R;
-import com.newchar.woolhelper.entry.ActionEntry;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.newchar.accesshelper.ActionEntry;
 
 /**
  * @author newChar

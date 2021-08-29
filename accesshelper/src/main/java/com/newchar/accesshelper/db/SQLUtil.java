@@ -1,12 +1,11 @@
-package com.newchar.woolhelper.util;
+package com.newchar.accesshelper.db;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.newchar.woolhelper.db.SQLHelper;
-import com.newchar.woolhelper.entry.ActionEntry;
+import com.newchar.accesshelper.ActionEntry;
+
 
 /**
  * @author newChar

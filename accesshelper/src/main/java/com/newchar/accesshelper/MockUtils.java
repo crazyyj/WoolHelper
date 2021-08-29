@@ -1,14 +1,10 @@
-package com.newchar.woolhelper.util;
+package com.newchar.accesshelper;
 
 import android.content.ContentValues;
-import android.content.Entity;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.SystemClock;
 
-import com.newchar.woolhelper.App;
-import com.newchar.woolhelper.R;
-import com.newchar.woolhelper.db.SQLHelper;
-import com.newchar.woolhelper.entry.HasOrderAppItem;
+import com.newchar.accesshelper.db.SQLHelper;
+import com.newchar.accesshelper.entry.HasOrderAppItem;
 
 /**
  * @author newChar
@@ -19,13 +15,13 @@ import com.newchar.woolhelper.entry.HasOrderAppItem;
 public class MockUtils {
 
     public static void saveFalseCmdAppData(int num) {
-        SQLHelper helper = new SQLHelper(App.mApplication);
+        SQLHelper helper = new SQLHelper(Utils.getContext());
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         try {
             writableDatabase.beginTransaction();
             for (int i = 0; i < num; i++) {
                 ContentValues content = new ContentValues();
-                content.put(HasOrderAppItem.COLUMNS.COLUMNS_APP_ICON, R.mipmap.ic_launcher);
+//                content.put(HasOrderAppItem.COLUMNS.COLUMNS_APP_ICON, R.mipmap.ic_launcher);
                 content.put(HasOrderAppItem.COLUMNS.COLUMNS_APP_PACKAGE_NAME, "com.baidu.ar." + System.currentTimeMillis());
                 content.put(HasOrderAppItem.COLUMNS.COLUMNS_ORDER_NUMBER, "这里是jige");
                 content.put(HasOrderAppItem.COLUMNS.COLUMNS_DESCRIBE, "这里是描述");

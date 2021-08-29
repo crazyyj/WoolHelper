@@ -11,8 +11,16 @@ import java.util.logging.Logger;
  */
 public class LLL {
 
-    public static void E(String tag, String message) {
+    public static void e(String tag, String message) {
+        Logger.getLogger(tag).log(Level.SEVERE, message);
+    }
+
+    public static void w(String tag, String message) {
         Logger.getLogger(tag).log(Level.WARNING, message);
+    }
+
+    public static void i(String tag, String message) {
+        Logger.getLogger(tag).log(Level.INFO, message);
     }
 
 }
