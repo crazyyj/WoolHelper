@@ -2,6 +2,7 @@ package com.newchar.woolhelper.main;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -25,6 +27,8 @@ import com.newchar.accesshelper.log.LLL;
 import com.newchar.woolhelper.R;
 import com.newchar.woolhelper.adapter.AllAppAdapter;
 import com.newchar.accesshelper.db.SQLHelper;
+import com.newchar.woolhelper.addcmd.AddCmdActivity;
+import com.newchar.woolhelper.base.BaseActivity;
 import com.newchar.woolhelper.helper.EasyGlobalThread;
 
 
@@ -34,9 +38,8 @@ import com.newchar.woolhelper.helper.EasyGlobalThread;
  * @since 当前版本，（以及描述）
  * @since 迭代版本，（以及描述）
  */
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
-    private ImageButton mBtnMainCreateAction;
     private ListView mLvMainActionList;
     private CursorAdapter mAllAppAdapter;
 
@@ -86,7 +89,7 @@ public class MainActivity extends Activity {
         readableDatabase.beginTransaction();
         Cursor queryCursor = readableDatabase.query(HasOrderAppItem.TABLE.NAME, null, null, null, null, null, null);
         Log.e("Act", "query end " + System.currentTimeMillis());
-        mThreadResultHandler.sendMessage(mThreadResultHandler.obtainMessage(MSG_SEARCH_CMD_RESULT, queryCursor));
+        mThreadResultHandler.obtainMessage(MSG_SEARCH_CMD_RESULT, queryCursor).sendToTarget();
         readableDatabase.setTransactionSuccessful();
         readableDatabase.endTransaction();
     }
@@ -94,10 +97,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         // 展开服务列表， 是否开启服务。
         mLvMainActionList = findViewById(R.id.lvMainActionList);
-        mBtnMainCreateAction = findViewById(R.id.btnMainCreateAction);
+        ImageButton mBtnMainCreateAction = findViewById(R.id.btnMainCreateAction);
         mIvCommonTitleRightMore = findViewById(R.id.ivCommonTitleRightMore);
         mAllAppAdapter = new AllAppAdapter(this, null);
         mLvMainActionList.setAdapter(mAllAppAdapter);
@@ -115,6 +117,21 @@ public class MainActivity extends Activity {
         LLL.e("Act", "onResume start" + System.currentTimeMillis());
         super.onResume();
         MockUtils.saveFalseCmdAppData(4);
+    }
+
+    @Override
+    protected void initData(Intent intent, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_main;
     }
 
     private final View.OnClickListener mClickListener = new View.OnClickListener() {
@@ -135,7 +152,7 @@ public class MainActivity extends Activity {
     };
 
     private void showGlobalConfigWindow() {
-        ViewGroup contentView = findViewById(android.R.id.content);
+        ViewGroup contentView = findViewById(Window.ID_ANDROID_CONTENT);
         View popWindowView = LayoutInflater.from(getApplicationContext()).inflate(
                 R.layout.pop_global_config, contentView, false);
         PopupWindow window = new PopupWindow(popWindowView, ViewGroup.LayoutParams.WRAP_CONTENT, 400);
@@ -148,16 +165,16 @@ public class MainActivity extends Activity {
      * 添加命令，打开添加页面，选择App
      */
     private void addCmd() {
-//        AddCmdActivity.launch(this);
-        MockUtils.saveFalseCmdAppData(4);
-        mEasyThreadHandler.sendEmptyMessage(MSG_SEARCH_CMD);
+        AddCmdActivity.launch(this);
+//        MockUtils.saveFalseCmdAppData(4);
+//        mEasyThreadHandler.sendEmptyMessage(MSG_SEARCH_CMD);
     }
 
     @Override
-    protected void onDestroy() {
+    protected void releaseRes() {
+        super.releaseRes();
         mEasyThreadHandler.removeCallbacksAndMessages(null);
         mThreadResultHandler.removeCallbacksAndMessages(null);
-        super.onDestroy();
     }
 
 }

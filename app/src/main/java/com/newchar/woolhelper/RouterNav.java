@@ -3,6 +3,7 @@ package com.newchar.woolhelper;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.newchar.woolhelper.applist.AppListActivity;
 import com.newchar.woolhelper.main.MainActivity;
 
 /**
@@ -22,8 +23,7 @@ public final class RouterNav {
      * @param ctx Activity
      */
     public static void goAppListPage(Activity ctx) {
-        Intent intent = new Intent(ctx, MainActivity.class);
-        ctx.startActivityForResult(intent, 20);
+        AppListActivity.launch(ctx);
     }
 
 

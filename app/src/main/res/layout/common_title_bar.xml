@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/common_title_bar"
     android:layout_width="match_parent"
     android:layout_height="?android:actionBarSize">
 
@@ -13,6 +14,7 @@
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="@string/common_title_left_image_desc"
+        android:rotation="180"
         android:src="@drawable/common_ic_arrow_right" />
 
     <TextView

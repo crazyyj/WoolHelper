@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="20dp"
+        android:contentDescription="@string/desc"
         android:gravity="center"
         android:src="@drawable/common_ic_arrow_right" />
 
