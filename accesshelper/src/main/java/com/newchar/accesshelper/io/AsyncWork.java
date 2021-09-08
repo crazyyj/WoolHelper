@@ -10,19 +10,31 @@ import java.util.concurrent.TimeUnit;
  * @since 异步执行
  * @since 迭代版本，（以及描述）
  */
-public class AsyncWork {
+public final class AsyncWork {
 
-    private static final int CORE_POOL_SIZE = 4;
-    private static final int MAXIMUM_POOL_SIZE = 14;
+    private static final int CORE_POOL_SIZE = 2;
+    private static final int MAXIMUM_POOL_SIZE = 4;
     private static final long KEEP_ALIVE_TIME = 60L;
 
     private final ThreadPoolExecutor mThreadPoolExecutor;
+    private static AsyncWork sAsyncWork;
 
-    public AsyncWork() {
+    private AsyncWork() {
         mThreadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE,
                 KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<>(MAXIMUM_POOL_SIZE));
+    }
+
+    public static AsyncWork getInstance() {
+        if (sAsyncWork == null) {
+            synchronized (AsyncWork.class) {
+                if (sAsyncWork == null) {
+                    sAsyncWork = new AsyncWork();
+                }
+            }
+        }
+        return sAsyncWork;
     }
 
     public void execute(Runnable command) {

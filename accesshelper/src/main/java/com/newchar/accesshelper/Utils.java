@@ -1,12 +1,11 @@
 package com.newchar.accesshelper;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
 
 import java.io.BufferedReader;
@@ -14,6 +13,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileReader;
 import java.io.StringWriter;
+import java.util.List;
 
 /**
  * @author newChar
@@ -23,6 +23,7 @@ import java.io.StringWriter;
  */
 public final class Utils {
 
+    @SuppressLint("StaticFieldLeak")
     private static Context sContext;
 
     private Utils() {
@@ -38,11 +39,6 @@ public final class Utils {
         return manager.isEnabled();
     }
 
-    public static void stat() {
-        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getContext().startActivity(intent);
-    }
 
     /**
      * 安全的读文本内容，对File 做基本对校验
@@ -105,6 +101,18 @@ public final class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 获取手机全局基础信息，包名 App名
+     *
+     * @param context ctx
+     * @return 手机全部App基础信息
+     */
+    @SuppressLint("QueryPermissionsNeeded")
+    public static List<PackageInfo> getDevicesAllAppInfo(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        return packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES);
     }
 
 }

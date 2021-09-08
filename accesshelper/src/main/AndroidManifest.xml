@@ -2,6 +2,12 @@
     package="com.newchar.accesshelper">
 
     <application android:allowBackup="false">
+
+        <provider
+            android:name=".basic.ContextInit"
+            android:authorities="com.newchar.accesshelper"
+            android:exported="false" />
+
         <service
             android:name="com.newchar.accesshelper.BaseAccessibilityService"
             android:exported="false"

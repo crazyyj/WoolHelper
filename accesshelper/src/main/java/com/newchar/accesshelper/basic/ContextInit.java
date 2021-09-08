@@ -2,19 +2,26 @@ package com.newchar.accesshelper.basic;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
+import com.newchar.accesshelper.Utils;
+import com.newchar.accesshelper.appinfo.AppInfoManager;
 
 /**
  * @author newChar
  * date 2021/8/25
- * @since 当前版本，（以及描述）
+ * @since 用作初始化
  * @since 迭代版本，（以及描述）
  */
-class ContextInit extends ContentProvider {
+public class ContextInit extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        Context applicationContext = getContext().getApplicationContext();
+        Utils.holdContext(applicationContext);
+        AppInfoManager.get().preLoad();
         return false;
     }
 
