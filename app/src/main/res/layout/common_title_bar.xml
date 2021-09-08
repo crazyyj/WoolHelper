@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/common_title_bar"
-    android:layout_width="match_parent"
-    android:layout_height="?android:actionBarSize">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="?android:actionBarSize">-->
 
     <ImageButton
         android:id="@+id/ivCommonTitleLeftImage"
@@ -37,4 +38,6 @@
         android:contentDescription="@string/common_title_left_image_desc"
         android:src="@drawable/shuxiang" />
 
-</RelativeLayout>
+    <!--    </RelativeLayout>-->
+
+</merge>

@@ -2,8 +2,6 @@ package com.newchar.woolhelper;
 
 import android.app.Application;
 
-import com.newchar.accesshelper.Utils;
-
 /**
  * @author newChar
  * date 2021/4/13
@@ -18,7 +16,14 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mApplication = this;
-        Utils.holdContext(this);
+
+//        Handler easyThreadHandler = EasyGlobalThread.getEasyThreadHandler(new Handler.Callback() {
+//            @Override
+//            public boolean handleMessage(Message msg) {
+//                return false;
+//            }
+//        });
+//        easyThreadHandler.sendEmptyMessage(1);
     }
 
 }

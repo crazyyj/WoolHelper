@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/common_title_bar" />
+    <com.newchar.woolhelper.view.TitleView
+        android:id="@+id/common_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize" />
 
     <ListView
         android:id="@+id/lvAppList"

@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title_bar" />
+    <com.newchar.woolhelper.view.TitleView
+        android:id="@+id/common_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize" />
 
     <!--  包名编辑  -->
     <EditText
@@ -15,13 +18,13 @@
         android:layout_below="@id/common_title_bar"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@id/ivAddCmdPackageName"
-        android:hint="@string/edittext_default_hint"
-        android:background="@null"
         android:focusable="false"
+        android:hint="@string/edittext_default_hint"
+        android:importantForAutofill="no"
         android:inputType="text"
-        android:paddingStart="5dp"
+        android:paddingStart="8dp"
         android:paddingTop="15dp"
-        android:paddingEnd="5dp"
+        android:paddingEnd="8dp"
         android:paddingBottom="15dp"
         tools:ignore="LabelFor" />
 

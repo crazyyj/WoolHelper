@@ -1,8 +1,8 @@
 package com.newchar.woolhelper.applist;
 
+import com.newchar.accesshelper.entry.AppInfo;
 import com.newchar.woolhelper.base.BaseAdapterViewHolder;
 import com.newchar.woolhelper.base.BaseListAdapter;
-import com.newchar.woolhelper.bean.AppInfo;
 
 /**
  * @author newChar
@@ -16,6 +16,5 @@ public class AppListAdapter extends BaseListAdapter<AppInfo> {
     protected BaseAdapterViewHolder<AppInfo> getBaseHolder() {
         return new AppListViewHolder();
     }
-
 
 }

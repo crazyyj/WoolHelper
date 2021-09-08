@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 
+import com.newchar.accesshelper.appinfo.AppInfoManager;
+import com.newchar.accesshelper.entry.AppInfo;
 import com.newchar.woolhelper.R;
 import com.newchar.woolhelper.RouterNav;
 import com.newchar.woolhelper.applist.AppListActivity;
@@ -24,6 +25,7 @@ public class AddCmdActivity extends BaseActivity {
 
     private ImageView mIvAddCmdPackageName;
     private EditText etAddCmdPackageName;
+    private AppInfo mCurrentSelectAppInfo;
 
     public static void launch(Context context) {
         Intent intent = new Intent(context, AddCmdActivity.class);
@@ -49,6 +51,18 @@ public class AddCmdActivity extends BaseActivity {
             RouterNav.goAppListPage(AddCmdActivity.this);
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == AppListActivity.REQUEST_CODE_APP_LIST) {
+                String packageName = data.getStringExtra(AppListActivity.KEY_);
+                mCurrentSelectAppInfo = AppInfoManager.get().searchAppForPackage(packageName);
+                etAddCmdPackageName.setText(mCurrentSelectAppInfo.appName);
+            }
+        }
+    }
 
     @Override
     protected int getContentViewId() {

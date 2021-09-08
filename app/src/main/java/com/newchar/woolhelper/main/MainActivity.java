@@ -30,6 +30,7 @@ import com.newchar.accesshelper.db.SQLHelper;
 import com.newchar.woolhelper.addcmd.AddCmdActivity;
 import com.newchar.woolhelper.base.BaseActivity;
 import com.newchar.woolhelper.helper.EasyGlobalThread;
+import com.newchar.woolhelper.view.TitleView;
 
 
 /**
@@ -65,6 +66,7 @@ public class MainActivity extends BaseActivity {
         }
     };
     private ImageButton mIvCommonTitleRightMore;
+    private TitleView mCommonTitleBar;
 
     /**
      * 刷新列表UI
@@ -99,18 +101,25 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         // 展开服务列表， 是否开启服务。
         mLvMainActionList = findViewById(R.id.lvMainActionList);
+        mCommonTitleBar = findViewById(R.id.common_title_bar);
+        mCommonTitleBar.setTitleText("首页首页");
         ImageButton mBtnMainCreateAction = findViewById(R.id.btnMainCreateAction);
-        mIvCommonTitleRightMore = findViewById(R.id.ivCommonTitleRightMore);
+//        mIvCommonTitleRightMore = findViewById(R.id.ivCommonTitleRightMore);
         mAllAppAdapter = new AllAppAdapter(this, null);
         mLvMainActionList.setAdapter(mAllAppAdapter);
         mLvMainActionList.setEmptyView(null);
 
-        mIvCommonTitleRightMore.setOnClickListener(mClickListener);
+//        mIvCommonTitleRightMore.setOnClickListener(mClickListener);
         mBtnMainCreateAction.setOnClickListener(mClickListener);
 
         mEasyThreadHandler.sendEmptyMessage(MSG_SEARCH_CMD);
     }
 
+    @Override
+    protected void onGlobalLayoutInitFinish() {
+        super.onGlobalLayoutInitFinish();
+
+    }
 
     @Override
     protected void onResume() {
@@ -159,6 +168,7 @@ public class MainActivity extends BaseActivity {
         window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         window.setOutsideTouchable(true);
         window.showAsDropDown((View) mIvCommonTitleRightMore.getParent(), 0, 0, Gravity.END);
+
     }
 
     /**
